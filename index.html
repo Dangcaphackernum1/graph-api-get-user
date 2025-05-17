@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Graph API Demo</title>
+</head>
+<body>
+  <h2>Get Users from Microsoft Graph API</h2>
+  <button onclick="getUsers()">Lấy danh sách người dùng</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function getUsers() {
+      const token = prompt("Nhập access token (lấy từ Azure):");
+      const res = await fetch("https://graph.microsoft.com/v1.0/users", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
